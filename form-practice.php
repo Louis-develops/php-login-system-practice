@@ -3,6 +3,7 @@
 	// CONTROLLER
 	function initAndPrint(){
 		if(isset($_POST["submit"])){
+
 			// Get form data
 			$form_data = getFormData();
 
@@ -12,9 +13,40 @@
 			// Save login login status to a varible
 			$login_status_message = logInStatusMessage($form_validation["username"], $form_validation["password"]);
 
+			// Create database record
+			db_create($form_validation, $form_data["username"], $form_data["password"]);
+
 			echo $login_status_message;
 
 		}
+	}
+
+	function db_create($is_data_valid, $username, $password){
+
+		if($is_data_valid["username"] && $is_data_valid["password"]){
+			
+			// DB connection
+			$db_connect = mysqli_connect("localhost", "root", "", "form-practice");
+
+			if($db_connect){
+
+				// Create db query
+				$query = "INSERT INTO login_app(username, password) ";
+				$query .= "VALUES ('$username', '$password')";
+
+				// Send query to db
+				$result = mysqli_query($db_connect, $query);
+
+				// check if query was succesfull
+				if(!$result){
+					die("Failed to send data to database" . mysqli_error($db_connect));
+				}
+
+			} else {
+				die("Error connecting to database");
+			}
+		} 
+		
 	}
 	
 	
