@@ -1,31 +1,15 @@
-<?php include "functions.php"; ?>
+<?php include "includes/header.php"; ?>
 
+	<form class="form" action="shop_form_delete.php" method="post">
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Shop Form Delete</title>
-</head>
-<body>
+	<select name="id" id="">
+		<?php read(); ?>
+	</select>
 
+	<input type="submit" value="Submit" name="submit">
 
-<form class="form" action="shop_form_delete.php" method="post">
+	</form>
 
-<select name="id" id="">
-	<?php read(); ?>
-</select>
+	<?php delete_record(); ?>
 
-<input type="submit" value="Submit" name="submit">
-
-</form>
-
-<?php delete_record(); ?>
-
-	
-
-	
-
-</body>
-</html>
+<?php include "includes/footer.php"; ?>

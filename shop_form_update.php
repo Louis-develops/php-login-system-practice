@@ -1,6 +1,6 @@
 <?php include "includes/header.php"; ?>
 
-	<form class="form" action="shop_form_create.php" method="post">
+	<form class="form" action="shop_form_update.php" method="post">
 
 		<label for="item-name">Item Name:</label><br>
 		<input type="text" name="item-name" id="item-name"><br><br>
@@ -13,12 +13,15 @@
 
 		<label for="item-stock-quantity">Item Stock qunatity:</label><br>
 		<input type="number" name="item-stock-quantity" id="item-stock-quantity"><br><br>
-		
-		
+
+		<select name="id" id="">
+			<?php read_db("option"); ?>
+		</select>
+
 		<input type="submit" value="Submit" name="submit">
 
 	</form>
 
-	<?php create_item(); ?>
+	<?php update(); ?>
 
 <?php include "includes/footer.php"; ?>
